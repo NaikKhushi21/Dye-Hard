@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 436306342}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,6 +618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlassGreen
       objectReference: {fileID: 0}
+    - target: {fileID: 367461345520030008, guid: 04cd68253415648a599617565acb616a, type: 3}
+      propertyPath: m_TagString
+      value: Glass
+      objectReference: {fileID: 0}
     - target: {fileID: 7995033286449217874, guid: 04cd68253415648a599617565acb616a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.24
@@ -819,6 +823,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754640063238012176, guid: c70c77fb74a234a2c866af049075621a, type: 3}
       propertyPath: m_Name
+      value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754640063238012176, guid: c70c77fb74a234a2c866af049075621a, type: 3}
+      propertyPath: m_TagString
       value: Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
