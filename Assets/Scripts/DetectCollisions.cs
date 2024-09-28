@@ -65,7 +65,57 @@ public class DetectCollisions : MonoBehaviour
 
     void HandleBlendedColorCollision(Color obstacleColor, Color ballColor)
     {
-        // TODO: change color based on what current obstacleColor and ballColor is
-        Destroy(gameObject);
+        if (IsBallColorOneOfBlended(obstacleColor, ballColor))
+        {
+            // TODO: change blended obstacle color to primary color
+            ChangeBlendedObstacleColor(obstacleColor, ballColor);
+
+        }
+        else
+        {
+            // TODO: give player penalty based on wrong color collisions
+            Destroy(gameObject);
+        }
+    }
+
+    bool IsBallColorOneOfBlended(Color obstacleColor, Color ballColor)
+    {
+        Dictionary<Color, HashSet<Color>> blendedColorConstitutions = ColorManager.BlendedColorConstitutions;
+        // Check if ballColor is part of the blended color's constituents
+        Debug.Log(obstacleColor);
+        HashSet<Color> currentConstituents = new(blendedColorConstitutions[obstacleColor]);
+        Debug.Log(currentConstituents);
+        return blendedColorConstitutions[obstacleColor].Contains(ballColor);
+    }
+
+    void ChangeBlendedObstacleColor(Color obstacleColor, Color ballColor)
+    {
+        // Retrieve the dictionaries
+        Dictionary<Color, HashSet<Color>> blendedColorConstitutions = ColorManager.BlendedColorConstitutions;
+        Dictionary<string, Color> blendedColorsMap = ColorManager.BlendedColorsMap;
+        Dictionary<Color, Color> complementaryColorMap = ColorManager.ComplementaryColorMap;
+
+        // Get the current constituent colors
+        HashSet<Color> currentConstituents = new(blendedColorConstitutions[obstacleColor]);
+
+        // Remove the ballColor from the constituent colors
+        currentConstituents.Remove(ballColor);
+
+        // Determine the new color based on the remaining constituents
+        Color newObstacleColor = Color.red;
+        if (currentConstituents.Count == 1) // obstacle color is green, orange, or purple
+        {
+            // If only one color is left, set obstacleColor to that color
+            foreach (var color in currentConstituents)
+            {
+                newObstacleColor = color;
+            }
+        }
+        else // obstacle color is brown
+        {
+            newObstacleColor = complementaryColorMap[ballColor];
+        }
+
+        gameObject.GetComponent<Renderer>().material.color = newObstacleColor;
     }
 }
