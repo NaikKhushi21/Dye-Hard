@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
+    private int rewardBall = 3;
+    private int penaltyBall = 3;
+    private BallCountManager ballCountManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ballCountManager = FindObjectOfType<BallCountManager>();
     }
 
     // Update is called once per frame
@@ -51,14 +55,38 @@ public class DetectCollisions : MonoBehaviour
     {
         if (obstacleColor == ballColor)
         {
-            // TODO: give player rewards
-            Debug.Log("color matches");
+            // Give player rewards based on color
+            if (obstacleColor == ColorManager.PrimaryColorsMap["Red"])
+            {
+                ballCountManager.ModifyBallCount("red", rewardBall);
+            }
+            else if (obstacleColor == ColorManager.PrimaryColorsMap["Yellow"])
+            {
+                ballCountManager.ModifyBallCount("yellow", rewardBall);
+            }
+            else if (obstacleColor == ColorManager.PrimaryColorsMap["Blue"])
+            {
+                ballCountManager.ModifyBallCount("blue", rewardBall);
+            }
+
             Destroy(gameObject);
         }
         else
         {
-            // TODO: give player penalty
-            Debug.Log("color didn't match");
+            // Give player penalty based on color
+            if (ballColor == ColorManager.PrimaryColorsMap["Red"])
+            {
+                ballCountManager.ModifyBallCount("red", -1 * penaltyBall);
+            }
+            else if (obstacleColor == ColorManager.PrimaryColorsMap["Yellow"])
+            {
+                ballCountManager.ModifyBallCount("yellow", -1 * penaltyBall);
+            }
+            else if (obstacleColor == ColorManager.PrimaryColorsMap["Blue"])
+            {
+                ballCountManager.ModifyBallCount("blue", -1 * penaltyBall);
+            }
+
             Destroy(gameObject);
         }
     }

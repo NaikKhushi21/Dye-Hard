@@ -108,15 +108,15 @@ public class PlayerController : MonoBehaviour
         // Decrease ball count based on color
         if (dynamicColor == ColorManager.PrimaryColorsMap["Red"])
         {
-            ballCountManager.ModifyBallCount("red", -1); // Decrease red ball count
+            ballCountManager.ModifyBallCount("red", -1);
         }
         else if (dynamicColor == ColorManager.PrimaryColorsMap["Yellow"])
         {
-            ballCountManager.ModifyBallCount("yellow", -1); // Decrease yellow ball count
+            ballCountManager.ModifyBallCount("yellow", -1);
         }
         else if (dynamicColor == ColorManager.PrimaryColorsMap["Blue"])
         {
-            ballCountManager.ModifyBallCount("blue", -1); // Decrease blue ball count
+            ballCountManager.ModifyBallCount("blue", -1);
         }
     }
 
