@@ -56,37 +56,13 @@ public class DetectCollisions : MonoBehaviour
         if (obstacleColor == ballColor)
         {
             // Give player rewards based on color
-            if (obstacleColor == ColorManager.PrimaryColorsMap["Red"])
-            {
-                ballCountManager.ModifyBallCount("red", rewardBall);
-            }
-            else if (obstacleColor == ColorManager.PrimaryColorsMap["Yellow"])
-            {
-                ballCountManager.ModifyBallCount("yellow", rewardBall);
-            }
-            else if (obstacleColor == ColorManager.PrimaryColorsMap["Blue"])
-            {
-                ballCountManager.ModifyBallCount("blue", rewardBall);
-            }
-
+            ballCountManager.ModifyBallCount(rewardBall);
             Destroy(gameObject);
         }
         else
         {
             // Give player penalty based on color
-            if (ballColor == ColorManager.PrimaryColorsMap["Red"])
-            {
-                ballCountManager.ModifyBallCount("red", -1 * penaltyBall);
-            }
-            else if (obstacleColor == ColorManager.PrimaryColorsMap["Yellow"])
-            {
-                ballCountManager.ModifyBallCount("yellow", -1 * penaltyBall);
-            }
-            else if (obstacleColor == ColorManager.PrimaryColorsMap["Blue"])
-            {
-                ballCountManager.ModifyBallCount("blue", -1 * penaltyBall);
-            }
-
+            ballCountManager.ModifyBallCount(penaltyBall);
             Destroy(gameObject);
         }
     }

@@ -106,18 +106,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = shootDirection * ballSpeed;
 
         // Decrease ball count based on color
-        if (dynamicColor == ColorManager.PrimaryColorsMap["Red"])
-        {
-            ballCountManager.ModifyBallCount("red", -1);
-        }
-        else if (dynamicColor == ColorManager.PrimaryColorsMap["Yellow"])
-        {
-            ballCountManager.ModifyBallCount("yellow", -1);
-        }
-        else if (dynamicColor == ColorManager.PrimaryColorsMap["Blue"])
-        {
-            ballCountManager.ModifyBallCount("blue", -1);
-        }
+        ballCountManager.ModifyBallCount(-1);
     }
 
     void HandleBallColorSwitch()
