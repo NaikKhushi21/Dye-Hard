@@ -5,14 +5,30 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject ballPrefab;
-    public float ballSpeed = 10f;   // Speed of the ball
+    public float ballSpeed = 20f;   // Speed of the ball
     public Transform firePoint;     // Where the ball will be instantiated (position of the shooting point)
-
     private Color dynamicColor;
+
+    // added by khushi
+    public LineRenderer aimLine;    // LineRenderer for the aiming line
+    private float lineLength = 35f;  // Desired fixed length of the line
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         dynamicColor = ColorManager.PrimaryColorsMap["Red"];
+
+        // added by khushi
+        // Initialize LineRenderer properties
+        aimLine.startWidth = 0.05f;  // Set the width of the line
+        aimLine.endWidth = 0.05f;
+        aimLine.startColor = dynamicColor;
+        aimLine.endColor = dynamicColor;
+        aimLine.positionCount = 2;
+
+        
     }
 
     // Update is called once per frame
@@ -23,12 +39,41 @@ public class PlayerController : MonoBehaviour
         HandleMousePress();
 
         HandleBallColorSwitch();
+
+        // added by khushi
+        UpdateAimLine();            // Update the position of the aiming line
+
+
+    }
+
+    // added by khushi
+    void UpdateAimLine()
+    {
+        // Get the mouse position in world space
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0; // Ensure it's on the same 2D plane
+
+        // Calculate the direction from the firePoint to the mouse
+        Vector3 direction = mousePosition - firePoint.position;
+
+        // Normalize the direction to get a unit vector (direction without magnitude)
+        direction.Normalize();
+
+        // Multiply the normalized direction by the desired line length
+        Vector3 lineEndPosition = firePoint.position + direction * lineLength;
+
+        // Set the start and end positions of the LineRenderer
+        aimLine.SetPosition(0, firePoint.position);  // Start of the line
+        aimLine.SetPosition(1, lineEndPosition);     // End of the line, fixed length
     }
 
     void UpdatePlayerDirection()
     {
         // Step 1: Get the mouse position in world space
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // added by khushi
+        mousePosition.z = 0;
 
         // Step 2: Calculate the direction from the object to   s the mouse
         Vector3 direction = mousePosition - transform.position;
@@ -79,10 +124,21 @@ public class PlayerController : MonoBehaviour
             dynamicColor = ColorManager.PrimaryColorsMap["Blue"];
         }
         ChangePlayerColor();
+
+        // added by khushi
+        ChangeAimLineColor();  // Update the line color when the player changes color
+
     }
 
     void ChangePlayerColor()
     {
         gameObject.GetComponent<Renderer>().material.color = dynamicColor;
+    }
+
+    // added by khushi
+    void ChangeAimLineColor()
+    {
+        aimLine.startColor = dynamicColor;
+        aimLine.endColor = dynamicColor;
     }
 }
