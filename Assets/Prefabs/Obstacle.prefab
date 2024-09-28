@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallingSpeed: 3
+  minLifeTime: 2
+  maxLifeTime: 3
 --- !u!114 &5823273939158573252
 MonoBehaviour:
   m_ObjectHideFlags: 0
