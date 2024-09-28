@@ -16,7 +16,7 @@ public static class ColorManager
         { "Green", Color.green },
         { "Orange", new Color(1f, 0.5f, 0f, 1f) },
         { "Purple", new Color(1, 0, 1, 1) },
-        { "Brown", new Color(0.65f, 0.16f, 0.16f, 1f) }
+        { "Black", Color.black }
     };
 
     public static HashSet<Color> PrimaryColorsSet = new HashSet<Color>
@@ -31,24 +31,39 @@ public static class ColorManager
         BlendedColorsMap["Green"],
         BlendedColorsMap["Orange"],
         BlendedColorsMap["Purple"],
-        BlendedColorsMap["Brown"],
+        BlendedColorsMap["Black"],
+    };
+
+    public static Dictionary<Color, HashSet<Color>> BlendedColorConstitutions = new Dictionary<Color, HashSet<Color>>
+    {
+        { BlendedColorsMap["Green"], new HashSet<Color> { PrimaryColorsMap["Yellow"], PrimaryColorsMap["Blue"] } },
+        { BlendedColorsMap["Orange"], new HashSet<Color> { PrimaryColorsMap["Red"], PrimaryColorsMap["Yellow"] } },
+        { BlendedColorsMap["Purple"], new HashSet<Color> { PrimaryColorsMap["Red"], PrimaryColorsMap["Blue"] } },
+        { BlendedColorsMap["Black"], new HashSet<Color> { PrimaryColorsMap["Red"], PrimaryColorsMap["Yellow"], PrimaryColorsMap["Blue"] } }
+    };
+
+    public static Dictionary<Color, Color> ComplementaryColorMap = new Dictionary<Color, Color>
+    {
+        { PrimaryColorsMap["Red"], BlendedColorsMap["Green"] },
+        { PrimaryColorsMap["Yellow"], BlendedColorsMap["Purple"] },
+        { PrimaryColorsMap["Blue"], BlendedColorsMap["Orange"] },
     };
 
     // Primary Colors List
     public static List<Color> PrimaryColors = new List<Color>
     {
-        Color.red,
-        Color.yellow,
-        Color.blue
+        PrimaryColorsMap["Red"],
+        PrimaryColorsMap["Yellow"],
+        PrimaryColorsMap["Blue"],
     };
 
     // Blended Colors List
     public static List<Color> BlendedColors = new List<Color>
     {
-        Color.green,
-        new Color(1f, 0.5f, 0f, 1f), // Orange
-        new Color(1f, 0f, 1f, 1f),   // Purple
-        new Color(0.65f, 0.16f, 0.16f, 1f) // Brown
+        BlendedColorsMap["Green"],
+        BlendedColorsMap["Orange"],
+        BlendedColorsMap["Purple"],
+        BlendedColorsMap["Black"],
     };
 
     // All Colors List (combining primary and blended colors)
