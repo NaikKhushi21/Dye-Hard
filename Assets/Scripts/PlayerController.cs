@@ -9,10 +9,13 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;     // Where the ball will be instantiated (position of the shooting point)
 
     private Color dynamicColor;
+    private BallCountManager ballCountManager;
+
     // Start is called before the first frame update
     void Start()
     {
         dynamicColor = ColorManager.PrimaryColorsMap["Red"];
+        ballCountManager = FindObjectOfType<BallCountManager>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,20 @@ public class PlayerController : MonoBehaviour
 
         // Apply velocity to the ball in the direction the object is pointing, with a constant speed
         rb.velocity = shootDirection * ballSpeed;
+
+        // Decrease ball count based on color
+        if (dynamicColor == ColorManager.PrimaryColorsMap["Red"])
+        {
+            ballCountManager.ModifyBallCount("red", -1); // Decrease red ball count
+        }
+        else if (dynamicColor == ColorManager.PrimaryColorsMap["Yellow"])
+        {
+            ballCountManager.ModifyBallCount("yellow", -1); // Decrease yellow ball count
+        }
+        else if (dynamicColor == ColorManager.PrimaryColorsMap["Blue"])
+        {
+            ballCountManager.ModifyBallCount("blue", -1); // Decrease blue ball count
+        }
     }
 
     void HandleBallColorSwitch()
