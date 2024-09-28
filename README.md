@@ -31,7 +31,7 @@ git branch --set-upstream-to origin/main
 
 ## Development Workflow
 
-1. Before starting any work, pull the latest changes from the remote repository:
+1. Before starting any work, switch back to "main" branch, pull the latest changes from the remote repository:
 ```bash
 git pull
 ```
@@ -48,35 +48,20 @@ git add .
 ```bash
 git commit -m "Add your commit message"
 ```
-6. Push the changes to the remote repository:
+6. Checkout back to "main" branch and pull the latest changes from the remote repository:
 ```bash
-git push origin feature-name
-```
-7. Create a pull request on GitHub and make sure no conflicts exist
-8. Merge the pull request once approved
-
-## Resolving Merge Conflicts
-
-1. Pull the latest changes from the remote repository:
-```bash
+git checkout main
 git pull
 ```
-2. Switch to the branch that has the merge conflict:
+7. Merge the feature branch with the main branch:
 ```bash
-git checkout feature-name
+git merge feature-name
 ```
-3. Rebasing the branch with the main branch:
+8. Push the changes to the remote repository:
 ```bash
-git rebase main
+git push
 ```
-4. Resolve the merge conflicts in the files
-5. If needed, continue the rebase by running:
-```bash
-git rebase --continue
-```
-6. After resolving the conflicts, push the changes to the remote repository:
-```bash
-git push origin feature-name
-```
-7. Create a pull request on GitHub and make sure no conflicts exist
-8. Merge the pull request once approved
+
+## Resolving Merge Conflicts locally
+
+If you see a merge conflict while merging the feature branch with the main branch, use any text editor to resolve the conflicts. After resolving the conflicts, add the changes to the staging area and commit the changes. Then push the changes to the remote repository.
