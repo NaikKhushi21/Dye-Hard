@@ -60,6 +60,7 @@ public class DetectCollisions : MonoBehaviour
         }
     }
 
+    
     void HandlePrimaryColorCollision(Color obstacleColor, Color ballColor)
     {
         if (obstacleColor == ballColor)

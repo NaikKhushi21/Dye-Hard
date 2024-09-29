@@ -5,9 +5,11 @@ using UnityEngine;
 public class ObstacleFalling : MonoBehaviour
 {
     public float fallingSpeed = 5.0f;
-    public float minLifeTime = 3.0f;  // Minimum lifetime for an obstacle
-    public float maxLifeTime = 10.0f; // Maximum lifetime for an obstacle
-    private float lifeTime;           // Actual lifetime for this specific obstacle
+    private float minLifeTime = 3.0f;  // Minimum lifetime for an obstacle
+    private float maxLifeTime = 7.0f; // Maximum lifetime for an obstacle
+    private float lifeTime;           // Actual lifetime for this specific
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -15,8 +17,12 @@ public class ObstacleFalling : MonoBehaviour
         // Assign a random lifetime between minLifeTime and maxLifeTime
         lifeTime = Random.Range(minLifeTime, maxLifeTime);
 
+
         // Log the lifetime for debugging
         Debug.Log("Obstacle " + gameObject.name + " lifetime: " + lifeTime + " seconds");
+
+        
+
     }
 
     // Update is called once per frame
@@ -34,6 +40,9 @@ public class ObstacleFalling : MonoBehaviour
             // Debug.Log("Obstacle has disappeared: " + gameObject.name);
             DestroyObstacle();
         }
+
+
+
     }
 
     // For now, we'll just print a message to the console
