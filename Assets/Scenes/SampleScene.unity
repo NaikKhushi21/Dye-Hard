@@ -474,12 +474,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5198279e461c4f6ebc12c538fee3986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redBallCount: 10
-  blueBallCount: 10
-  yellowBallCount: 10
-  redBallText: {fileID: 1587782486}
-  blueBallText: {fileID: 714321739}
-  yellowBallText: {fileID: 1206656361}
+  ballCount: 10
+  rewardBall: 3
+  penaltyBall: -3
+  ballText: {fileID: 0}
 --- !u!120 &693243849
 LineRenderer:
   serializedVersion: 2
