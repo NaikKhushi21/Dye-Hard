@@ -31,7 +31,7 @@ public class ObstacleFalling : MonoBehaviour
         // Check if the timer has run out
         if (lifeTime <= 0)
         {
-            Debug.Log("Obstacle has disappeared: " + gameObject.name);
+            // Debug.Log("Obstacle has disappeared: " + gameObject.name);
             DestroyObstacle();
         }
     }
@@ -39,7 +39,7 @@ public class ObstacleFalling : MonoBehaviour
     // For now, we'll just print a message to the console
     void DestroyObstacle()
     {
-        Debug.Log("Destroying obstacle: " + gameObject.name);
+        // Debug.Log("Destroying obstacle: " + gameObject.name);
         // Later you can uncomment the line below to actually destroy the object
         Destroy(gameObject);
     }

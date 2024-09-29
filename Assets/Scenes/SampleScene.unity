@@ -474,10 +474,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5198279e461c4f6ebc12c538fee3986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballCount: 10
-  rewardBall: 3
-  penaltyBall: -3
-  ballText: {fileID: 0}
+  redBallCount: 10
+  blueBallCount: 10
+  yellowBallCount: 10
+  redBallText: {fileID: 0}
+  blueBallText: {fileID: 0}
+  yellowBallText: {fileID: 0}
 --- !u!120 &693243849
 LineRenderer:
   serializedVersion: 2
@@ -499,7 +501,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 25bdef29fbab9419faa6f977697e4ccf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

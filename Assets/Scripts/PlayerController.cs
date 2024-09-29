@@ -148,7 +148,10 @@ public class PlayerController : MonoBehaviour
     // added by khushi
     void ChangeAimLineColor()
     {
-        aimLine.startColor = dynamicColor;
-        aimLine.endColor = dynamicColor;
+        // aimLine.startColor = dynamicColor;
+        // aimLine.endColor = dynamicColor;
+
+        gameObject.GetComponent<LineRenderer>().material.color = dynamicColor;
+
     }
 }
