@@ -22,7 +22,7 @@ public class DetectCollisions : MonoBehaviour
     {
         if (gameObject.CompareTag("Ball"))
         {
-            HandleBallCollision();
+            HandleBallCollision(other);
         }
         else if (gameObject.CompareTag("Obstacle"))
         {
@@ -30,9 +30,20 @@ public class DetectCollisions : MonoBehaviour
         }
     }
 
-    void HandleBallCollision()
+    void HandleBallCollision(Collider2D other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            BallMoving ballController = GetComponent<BallMoving>();
+            if (ballController != null)
+            {
+                ballController.ReverseXVelocity();
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void HandleObstacleCollision(Collider2D other)
