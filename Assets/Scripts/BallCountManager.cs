@@ -7,6 +7,8 @@ public class BallCountManager : MonoBehaviour
 {
     // Ball count for different colors
     public int ballCount = 10;
+    public int rewardBall = 3;
+    public int penaltyBall = -3;
 
     // TextMeshProUGUI elements to show the counts
     public TextMeshProUGUI ballText;

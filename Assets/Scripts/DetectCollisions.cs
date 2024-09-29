@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
-    private int rewardBall = 3;
-    private int penaltyBall = 3;
     private BallCountManager ballCountManager;
 
     // Start is called before the first frame update
@@ -56,13 +54,13 @@ public class DetectCollisions : MonoBehaviour
         if (obstacleColor == ballColor)
         {
             // Give player rewards based on color
-            ballCountManager.ModifyBallCount(rewardBall);
+            ballCountManager.ModifyBallCount(ballCountManager.rewardBall);
             Destroy(gameObject);
         }
         else
         {
             // Give player penalty based on color
-            ballCountManager.ModifyBallCount(penaltyBall);
+            ballCountManager.ModifyBallCount(ballCountManager.penaltyBall);
             Destroy(gameObject);
         }
     }
@@ -71,13 +69,14 @@ public class DetectCollisions : MonoBehaviour
     {
         if (IsBallColorOneOfBlended(obstacleColor, ballColor))
         {
-            // TODO: change blended obstacle color to primary color
+            // Change blended obstacle color to primary color
             ChangeBlendedObstacleColor(obstacleColor, ballColor);
 
         }
         else
         {
-            // TODO: give player penalty based on wrong color collisions
+            // Give player penalty based on wrong color collisions
+            ballCountManager.ModifyBallCount(ballCountManager.penaltyBall);
             Destroy(gameObject);
         }
     }
