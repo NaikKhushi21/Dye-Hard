@@ -15,4 +15,14 @@ public class BallMoving : MonoBehaviour
     {
         
     }
+
+    public void ReverseXVelocity()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            // Reverse the x velocity
+            rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+        }
+    }
 }
