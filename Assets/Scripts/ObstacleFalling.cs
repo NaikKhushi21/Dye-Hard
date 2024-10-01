@@ -16,7 +16,7 @@ public class ObstacleFalling : MonoBehaviour
         lifeTime = Random.Range(minLifeTime, maxLifeTime);
 
         // Log the lifetime for debugging
-        Debug.Log("Obstacle " + gameObject.name + " lifetime: " + lifeTime + " seconds");
+        // Debug.Log("Obstacle " + gameObject.name + " lifetime: " + lifeTime + " seconds");
     }
 
     // Update is called once per frame

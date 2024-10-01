@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject ObstaclePrefab;
+    public GameObject ObstacleWrapperPrefab;
 
     private float spawnPosY = 7;
     private float spawnPosXRange = 10;
@@ -25,16 +25,23 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnRandomObstacle()
     {
-        GameObject newObstacle = ObstaclePrefab;
         // Pick a random color from ColorManager
         Color randomColor = GetRandomColor();
 
         Vector2 spawnPos = new Vector2(Random.Range(-spawnPosXRange, spawnPosXRange), spawnPosY);
-        Quaternion spawnRotaton = Quaternion.Euler(0, 0, 0);
+        Quaternion spawnRotation = Quaternion.Euler(0, 0, 0);
 
-        GameObject instantiatedObstacle = Instantiate(newObstacle, spawnPos, spawnRotaton);
-        instantiatedObstacle.GetComponent<Renderer>().material.color = randomColor;
+        // Instantiate the wrapper
+        GameObject instantiatedWrapper = Instantiate(ObstacleWrapperPrefab, spawnPos, spawnRotation);
 
+        // Find the actual obstacle GameObject inside the wrapper
+        //GameObject obstacle = instantiatedWrapper.transform.Find("Obstacle").gameObject;
+        GameObject obstacle = ObstacleWrapperManager.GetObstacle(instantiatedWrapper);
+
+        // Set the random color on the obstacle's material
+        obstacle.GetComponent<Renderer>().material.color = randomColor;
+
+        // Schedule the next spawn
         Invoke("SpawnRandomObstacle", Random.Range(minSpawnInterval, maxSpawnInterval));
     }
 

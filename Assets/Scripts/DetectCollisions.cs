@@ -48,7 +48,8 @@ public class DetectCollisions : MonoBehaviour
 
     void HandleObstacleCollision(Collider2D other)
     {
-        Color obstacleColor = gameObject.GetComponent<Renderer>().material.color;
+        GameObject obstacle = ObstacleWrapperManager.GetObstacle(gameObject);
+        Color obstacleColor = obstacle.gameObject.GetComponent<Renderer>().material.color;
         Color ballColor = other.gameObject.GetComponent<Renderer>().material.color;
         if (ColorManager.PrimaryColorsSet.Contains(obstacleColor))
         {
@@ -78,7 +79,7 @@ public class DetectCollisions : MonoBehaviour
 
     void HandleBlendedColorCollision(Color obstacleColor, Color ballColor)
     {
-        if (IsBallColorOneOfBlended(obstacleColor, ballColor))
+        if (ColorManager.IsBallColorOneOfBlended(obstacleColor, ballColor))
         {
             // Change blended obstacle color to primary color
             ChangeBlendedObstacleColor(obstacleColor, ballColor);
@@ -92,44 +93,11 @@ public class DetectCollisions : MonoBehaviour
         }
     }
 
-    bool IsBallColorOneOfBlended(Color obstacleColor, Color ballColor)
-    {
-        Dictionary<Color, HashSet<Color>> blendedColorConstitutions = ColorManager.BlendedColorConstitutions;
-        // Check if ballColor is part of the blended color's constituents
-        Debug.Log(obstacleColor);
-        HashSet<Color> currentConstituents = new(blendedColorConstitutions[obstacleColor]);
-        Debug.Log(currentConstituents);
-        return blendedColorConstitutions[obstacleColor].Contains(ballColor);
-    }
-
     void ChangeBlendedObstacleColor(Color obstacleColor, Color ballColor)
     {
-        // Retrieve the dictionaries
-        Dictionary<Color, HashSet<Color>> blendedColorConstitutions = ColorManager.BlendedColorConstitutions;
-        Dictionary<string, Color> blendedColorsMap = ColorManager.BlendedColorsMap;
-        Dictionary<Color, Color> complementaryColorMap = ColorManager.ComplementaryColorMap;
+        Color newObstacleColor = ColorManager.GetNewObstacleColor(obstacleColor, ballColor);
 
-        // Get the current constituent colors
-        HashSet<Color> currentConstituents = new(blendedColorConstitutions[obstacleColor]);
-
-        // Remove the ballColor from the constituent colors
-        currentConstituents.Remove(ballColor);
-
-        // Determine the new color based on the remaining constituents
-        Color newObstacleColor = Color.red;
-        if (currentConstituents.Count == 1) // obstacle color is green, orange, or purple
-        {
-            // If only one color is left, set obstacleColor to that color
-            foreach (var color in currentConstituents)
-            {
-                newObstacleColor = color;
-            }
-        }
-        else // obstacle color is brown
-        {
-            newObstacleColor = complementaryColorMap[ballColor];
-        }
-
-        gameObject.GetComponent<Renderer>().material.color = newObstacleColor;
+        GameObject obstacle = ObstacleWrapperManager.GetObstacle(gameObject);
+        obstacle.gameObject.GetComponent<Renderer>().material.color = newObstacleColor;
     }
 }

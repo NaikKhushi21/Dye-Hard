@@ -76,4 +76,34 @@ public static class ColorManager
         AllColors.AddRange(PrimaryColors);
         AllColors.AddRange(BlendedColors);
     }
+
+    public static bool IsBallColorOneOfBlended(Color obstacleColor, Color ballColor)
+    {
+        return BlendedColorConstitutions[obstacleColor].Contains(ballColor);
+    }
+
+    public static Color GetNewObstacleColor(Color obstacleColor, Color ballColor)
+    {
+        // Get the current constituent colors
+        HashSet<Color> currentConstituents = new(BlendedColorConstitutions[obstacleColor]);
+
+        // Remove the ballColor from the constituent colors
+        currentConstituents.Remove(ballColor);
+
+        // Determine the new color based on the remaining constituents
+        Color newObstacleColor = Color.red;
+        if (currentConstituents.Count == 1) // obstacle color is green, orange, or purple
+        {
+            // If only one color is left, set obstacleColor to that color
+            foreach (var color in currentConstituents)
+            {
+                newObstacleColor = color;
+            }
+        }
+        else // obstacle color is brown
+        {
+            newObstacleColor = ComplementaryColorMap[ballColor];
+        }
+        return newObstacleColor;
+    }
 }

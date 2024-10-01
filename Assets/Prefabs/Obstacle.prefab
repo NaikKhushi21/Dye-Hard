@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5281116794536715475}
   - component: {fileID: 2618581221903706491}
   - component: {fileID: 4618597671267953072}
-  - component: {fileID: -8404836318048513575}
   - component: {fileID: 5823273939158573252}
   - component: {fileID: 2318048001458774442}
   - component: {fileID: 7255631587082661071}
@@ -96,7 +95,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117850552410468430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -134,21 +133,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-8404836318048513575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117850552410468430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c839e6b8b673f41d995e287e4d2a1e72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallingSpeed: 3
-  minLifeTime: 3
-  maxLifeTime: 10
 --- !u!114 &5823273939158573252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117850552410468430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fd46be99693240b380fe8ee09e6b47d, type: 3}
   m_Name: 
@@ -168,7 +152,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117850552410468430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81e175b4414d64498a00ab68fadc5d93, type: 3}
   m_Name: 
