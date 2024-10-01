@@ -51,7 +51,7 @@ using TMPro;
 public class BallCountManager : MonoBehaviour
 {
     // Ball count for different colors
-    public int ballCount = 10;
+    public int ballCount = 50;
     public int rewardBall = 3;
     public int penaltyBall = -3;
 
