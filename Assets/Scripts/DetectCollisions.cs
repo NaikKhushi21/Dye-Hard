@@ -28,6 +28,188 @@ public class DetectCollisions : MonoBehaviour
         {
             HandleObstacleCollision(other);
         }
+        
+        // added ///////////////////
+        // Check if the obstacle hits the player
+        if (gameObject.CompareTag("Obstacle") && other.CompareTag("Player"))
+        {
+            // End the game when an obstacle hits the player
+            ballCountManager.EndGame();
+        }
+        /////////////////////////////
+        
+    }
+
+   
+    void HandleBallCollision(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            BallMoving ballController = GetComponent<BallMoving>();
+            if (ballController != null)
+            {
+                ballController.ReverseXVelocity();
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    void HandleObstacleCollision(Collider2D other)
+    {
+        Color obstacleColor = gameObject.GetComponent<Renderer>().material.color;
+        Color ballColor = other.gameObject.GetComponent<Renderer>().material.color;
+        if (ColorManager.PrimaryColorsSet.Contains(obstacleColor))
+        {
+            HandlePrimaryColorCollision(obstacleColor, ballColor);
+        }
+        else
+        {
+            HandleBlendedColorCollision(obstacleColor, ballColor);
+        }
+
+        
+        // added ////////////////
+        // Check if the object hitting the obstacle is the player (or relevant tag)
+        if (other.gameObject.CompareTag("Player"))
+        {
+            ballCountManager.EndGame(); // End the game when the player hits an obstacle
+        }
+
+        ////////////////////////
+        
+    }
+
+
+    void HandlePrimaryColorCollision(Color obstacleColor, Color ballColor)
+    {
+        if (obstacleColor == ballColor)
+        {
+            // Give player rewards based on color
+            ballCountManager.ModifyBallCount(ballCountManager.rewardBall);
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Give player penalty based on color
+            ballCountManager.ModifyBallCount(ballCountManager.penaltyBall);
+            Destroy(gameObject);
+        }
+    }
+
+    /*
+    void HandleBlendedColorCollision(Color obstacleColor, Color ballColor)
+    {
+        if (IsBallColorOneOfBlended(obstacleColor, ballColor))
+        {
+            // Change blended obstacle color to primary color
+            ChangeBlendedObstacleColor(obstacleColor, ballColor);
+
+        }
+        else
+        {
+            // Give player penalty based on wrong color collisions
+            ballCountManager.ModifyBallCount(ballCountManager.penaltyBall);
+            Destroy(gameObject);
+        }
+    }
+    */
+
+    void HandleBlendedColorCollision(Color obstacleColor, Color ballColor)
+    {
+        if (IsBallColorOneOfBlended(obstacleColor, ballColor))
+        {
+            // Change blended obstacle color to primary color
+            ChangeBlendedObstacleColor(obstacleColor, ballColor);
+
+            // Do not destroy the object here since its color is being changed
+            Debug.Log("Obstacle color changed to a primary color.");
+            return;
+        }
+        
+    }
+
+    bool IsBallColorOneOfBlended(Color obstacleColor, Color ballColor)
+    {
+        Dictionary<Color, HashSet<Color>> blendedColorConstitutions = ColorManager.BlendedColorConstitutions;
+        // Check if ballColor is part of the blended color's constituents
+        Debug.Log(obstacleColor);
+        HashSet<Color> currentConstituents = new(blendedColorConstitutions[obstacleColor]);
+        Debug.Log(currentConstituents);
+        return blendedColorConstitutions[obstacleColor].Contains(ballColor);
+    }
+
+
+    
+    void ChangeBlendedObstacleColor(Color obstacleColor, Color ballColor)
+    {
+        // Retrieve the dictionaries
+        Dictionary<Color, HashSet<Color>> blendedColorConstitutions = ColorManager.BlendedColorConstitutions;
+        Dictionary<string, Color> blendedColorsMap = ColorManager.BlendedColorsMap;
+        Dictionary<Color, Color> complementaryColorMap = ColorManager.ComplementaryColorMap;
+
+        // Get the current constituent colors
+        HashSet<Color> currentConstituents = new(blendedColorConstitutions[obstacleColor]);
+
+        // Remove the ballColor from the constituent colors
+        currentConstituents.Remove(ballColor);
+
+        // Determine the new color based on the remaining constituents
+        Color newObstacleColor = Color.red;
+        if (currentConstituents.Count == 1) // obstacle color is green, orange, or purple
+        {
+            // If only one color is left, set obstacleColor to that color
+            foreach (var color in currentConstituents)
+            {
+                newObstacleColor = color;
+            }
+        }
+
+        else // obstacle color is brown
+        {
+            newObstacleColor = complementaryColorMap[ballColor];
+        }
+
+        gameObject.GetComponent<Renderer>().material.color = newObstacleColor;
+    }
+    
+
+    
+
+}
+
+/*
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DetectCollisions : MonoBehaviour
+{
+    private BallCountManager ballCountManager;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        ballCountManager = FindObjectOfType<BallCountManager>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (gameObject.CompareTag("Ball"))
+        {
+            HandleBallCollision(other);
+        }
+        else if (gameObject.CompareTag("Obstacle"))
+        {
+            HandleObstacleCollision(other);
+        }
     }
 
     void HandleBallCollision(Collider2D other)
@@ -60,7 +242,7 @@ public class DetectCollisions : MonoBehaviour
         }
     }
 
-    
+
     void HandlePrimaryColorCollision(Color obstacleColor, Color ballColor)
     {
         if (obstacleColor == ballColor)
@@ -134,3 +316,4 @@ public class DetectCollisions : MonoBehaviour
         gameObject.GetComponent<Renderer>().material.color = newObstacleColor;
     }
 }
+*/
