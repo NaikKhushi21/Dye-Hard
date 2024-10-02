@@ -6,7 +6,7 @@ using TMPro;
 public class ObstacleTimer : MonoBehaviour
 {
     private float minLifeTime = 5.0f;  // Minimum lifetime for an obstacle
-    private float maxLifeTime = 15.0f; // Maximum lifetime for an obstacle
+    private float maxLifeTime = 12.0f; // Maximum lifetime for an obstacle
     private float lifeTime;            // Actual lifetime for this specific obstacle
     private BallCountManager ballCountManager;
     // Start is called before the first frame update
@@ -47,6 +47,12 @@ public class ObstacleTimer : MonoBehaviour
         if (timerText != null)
         {
             timerText.text = lifeTime.ToString("F1") + "s"; // Format to one decimal place
+            if (lifeTime < 3 && timerText.color != Color.red)
+            {
+                timerText.color = Color.red;
+                timerText.fontStyle = FontStyles.Bold;
+                timerText.fontSize = 0.8f;
+            }
         }
     }
 
@@ -56,8 +62,7 @@ public class ObstacleTimer : MonoBehaviour
         // Reduce the ball count by 1 when the obstacle is not destroyed in time
         if (ballCountManager != null)
         {
-            ballCountManager.ModifyBallCount(-1);
-            Debug.Log("Ball count decreased by 1 due to obstacle timeout.");
+            ballCountManager.ModifyBallCount(ballCountManager.timePenalty);
         }
     }
 }

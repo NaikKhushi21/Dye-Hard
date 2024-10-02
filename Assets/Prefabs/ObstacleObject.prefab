@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.84, y: -0.16}
+  m_AnchoredPosition: {x: 0.514, y: 0.219}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6753259756061011625
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -1.0914397, y: 0, z: 0, w: -0.34327567}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -287,9 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c839e6b8b673f41d995e287e4d2a1e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 5
-  minLifeTime: 3
-  maxLifeTime: 10
 --- !u!61 &7710533928801108611
 BoxCollider2D:
   m_ObjectHideFlags: 0
