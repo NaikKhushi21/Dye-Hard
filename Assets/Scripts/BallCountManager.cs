@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class BallCountManager : MonoBehaviour
 {
@@ -10,12 +11,15 @@ public class BallCountManager : MonoBehaviour
     public int rewardBall = 3;
     public int penaltyBall = -3;
 
+    private GameManager gameManager;
+
     // TextMeshProUGUI elements to show the counts
     public TextMeshProUGUI ballText;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         UpdateBallCountUI();
     }
 
@@ -35,7 +39,13 @@ public class BallCountManager : MonoBehaviour
     public void ModifyBallCount(int count)
     {
         // Update the UI whenever the count changes
-        ballCount += count;
+        ballCount = Math.Max(0, ballCount + count);
         UpdateBallCountUI();
+
+        if (ballCount == 0)
+        {
+            gameManager.HandleGameOver();
+        }
+
     }
 }
