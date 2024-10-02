@@ -28,7 +28,14 @@ public class DetectCollisions : MonoBehaviour
         }
         else if (gameObject.CompareTag("Obstacle"))
         {
-            HandleObstacleCollision(other);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                gameManager.HandleGameOver();
+            }
+            else
+            {
+                HandleObstacleCollision(other);
+            }
         }
     }
 
@@ -59,14 +66,7 @@ public class DetectCollisions : MonoBehaviour
         }
         else
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                gameManager.HandleGameOver();
-            }
-            else
-            {
-                HandleBlendedColorCollision(obstacleColor, ballColor);
-            }
+            HandleBlendedColorCollision(obstacleColor, ballColor);
         }
     }
 

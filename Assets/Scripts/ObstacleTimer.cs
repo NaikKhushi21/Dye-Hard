@@ -5,8 +5,8 @@ using TMPro;
 
 public class ObstacleTimer : MonoBehaviour
 {
-    private float minLifeTime = 5.0f;  // Minimum lifetime for an obstacle
-    private float maxLifeTime = 12.0f; // Maximum lifetime for an obstacle
+    private float minLifeTime = 4.0f;  // Minimum lifetime for an obstacle
+    private float maxLifeTime = 10.0f; // Maximum lifetime for an obstacle
     private float lifeTime;            // Actual lifetime for this specific obstacle
     private BallCountManager ballCountManager;
     // Start is called before the first frame update
