@@ -5,11 +5,13 @@ using UnityEngine;
 public class DetectCollisions : MonoBehaviour
 {
     private BallCountManager ballCountManager;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         ballCountManager = FindObjectOfType<BallCountManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -57,7 +59,14 @@ public class DetectCollisions : MonoBehaviour
         }
         else
         {
-            HandleBlendedColorCollision(obstacleColor, ballColor);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                gameManager.HandleGameOver();
+            }
+            else
+            {
+                HandleBlendedColorCollision(obstacleColor, ballColor);
+            }
         }
     }
 
