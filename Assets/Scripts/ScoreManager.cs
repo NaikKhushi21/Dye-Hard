@@ -11,9 +11,12 @@ public class ScoreManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    private LevelManager levelManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         UpdateScoreUI();
     }
 
@@ -35,5 +38,10 @@ public class ScoreManager : MonoBehaviour
         // Update the UI whenever the score changes
         scoreCount = Math.Max(0, scoreCount + count);
         UpdateScoreUI();
+
+        if (scoreCount >= levelManager.levelMilestones[levelManager.currentLevel])
+        {
+            levelManager.LevelUp();
+        }
     }
 }

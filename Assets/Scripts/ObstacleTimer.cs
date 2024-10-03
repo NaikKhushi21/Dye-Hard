@@ -5,20 +5,18 @@ using TMPro;
 
 public class ObstacleTimer : MonoBehaviour
 {
-    private float minLifeTime = 4.0f;  // Minimum lifetime for an obstacle
-    private float maxLifeTime = 10.0f; // Maximum lifetime for an obstacle
-    private float lifeTime;            // Actual lifetime for this specific obstacle
+
+    private float lifeTime;
     private BallCountManager ballCountManager;
+    private ObstacleManager obstacleManager;
     // Start is called before the first frame update
     void Start()
     {
-        // Assign a random lifetime between minLifeTime and maxLifeTime
-        lifeTime = Random.Range(minLifeTime, maxLifeTime);
-
-        // Find the BallCountManager instance
+        obstacleManager = FindObjectOfType<ObstacleManager>();
         ballCountManager = FindObjectOfType<BallCountManager>();
 
-        // Initialize the timer text display
+        lifeTime = obstacleManager.GetLifeTime();
+
         UpdateTimerText();
     }
 

@@ -9,12 +9,15 @@ public class SpawnManager : MonoBehaviour
     private float spawnPosY = 7;
     private float spawnPosXRange = 10;
 
-    private float minSpawnInterval = 1.0f;
-    private float maxSpawnInterval = 3.0f;
+    private LevelManager levelManager;
+    private ObstacleManager obstacleManager;
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("SpawnRandomObstacle", Random.Range(minSpawnInterval, maxSpawnInterval));
+        levelManager = FindObjectOfType<LevelManager>();
+        obstacleManager = FindObjectOfType<ObstacleManager>();
+
+        Invoke("SpawnRandomObstacle", obstacleManager.GetSpawnInterval());
     }
 
     // Update is called once per frame
@@ -42,10 +45,33 @@ public class SpawnManager : MonoBehaviour
         obstacle.GetComponent<Renderer>().material.color = randomColor;
 
         // Schedule the next spawn
-        Invoke("SpawnRandomObstacle", Random.Range(minSpawnInterval, maxSpawnInterval));
+        Invoke("SpawnRandomObstacle", obstacleManager.GetSpawnInterval());
     }
 
     Color GetRandomColor()
+    {
+        int currentLevel = levelManager.currentLevel;
+        if (currentLevel == 1)
+        {
+            return GetRandomPrimaryColor();
+        }
+        else
+        {
+            return GetRandomAllColor();
+        }
+        
+    }
+
+    Color GetRandomPrimaryColor()
+    {
+        // Choose a random index from the AllColors list
+        int randomIndex = Random.Range(0, ColorManager.PrimaryColors.Count);
+
+        // Return the randomly chosen color
+        return ColorManager.PrimaryColors[randomIndex];
+    }
+
+    Color GetRandomAllColor()
     {
         // Choose a random index from the AllColors list
         int randomIndex = Random.Range(0, ColorManager.AllColors.Count);

@@ -13,6 +13,7 @@ public class BallCountManager : MonoBehaviour
     public int timePenalty = -1;
 
     private GameManager gameManager;
+    
 
     // TextMeshProUGUI elements to show the counts
     public TextMeshProUGUI ballText;
@@ -47,6 +48,5 @@ public class BallCountManager : MonoBehaviour
         {
             gameManager.HandleGameOver();
         }
-
     }
 }

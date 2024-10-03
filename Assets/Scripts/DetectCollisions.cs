@@ -81,15 +81,13 @@ public class DetectCollisions : MonoBehaviour
 
             // Give player score based on color
             scoreManager.ModifyScore(scoreManager.rewardScore);
-
-            Destroy(gameObject);
         }
         else
         {
             // Give player penalty based on color
             ballCountManager.ModifyBallCount(ballCountManager.penaltyBall);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 
     void HandleBlendedColorCollision(Color obstacleColor, Color ballColor)
