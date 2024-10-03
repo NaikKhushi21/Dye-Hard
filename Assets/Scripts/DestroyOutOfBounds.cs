@@ -29,7 +29,7 @@ public class DestroyOutOfBounds : MonoBehaviour
 
     bool IsBallOutOfBounds()
     {
-        return transform.position.y > boundary;
+        return transform.position.y > boundary || transform.position.y < -boundary;
     }
 
     bool IsObstacleOutOfBounds()
