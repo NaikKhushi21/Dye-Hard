@@ -5,10 +5,12 @@ using UnityEngine;
 public class DestroyOutOfBounds : MonoBehaviour
 {
     private float boundary = 10.0f;
+
+    private BallCountManager ballCountManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ballCountManager = FindObjectOfType<BallCountManager>();
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class DestroyOutOfBounds : MonoBehaviour
         }
         else if (gameObject.CompareTag("Obstacle") && IsObstacleOutOfBounds())
         {
+            ballCountManager.ModifyBallCount(ballCountManager.outOfBoundPenalty);
             Destroy(gameObject);
         }
     }

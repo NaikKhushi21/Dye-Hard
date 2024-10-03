@@ -7,10 +7,11 @@ using System;
 public class BallCountManager : MonoBehaviour
 {
     // Ball count for different colors
-    public int ballCount = 50;
-    public int rewardBall = 3;
+    public int ballCount = 10;
+    public int rewardBall = 4;
     public int penaltyBall = -3;
-    public int timePenalty = -1;
+    public int timePenalty = -5;
+    public int outOfBoundPenalty = -5;
 
     private GameManager gameManager;
     
