@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
     // Method to update the UI text
     void UpdateScoreUI()
     {
-        scoreText.text = "Score: " + scoreCount.ToString();
+        scoreText.text = scoreCount.ToString();
     }
 
     // Call this method when the score is updated

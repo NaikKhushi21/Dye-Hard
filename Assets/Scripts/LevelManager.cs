@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     // Method to update the UI text
     void UpdateLevelUI()
     {
-        levelText.text = currentLevel.ToString();
+        levelText.text = "Level: " + currentLevel.ToString();
     }
 
     // Call this method when the level changes
