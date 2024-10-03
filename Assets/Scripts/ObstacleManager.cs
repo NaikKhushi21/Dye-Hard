@@ -27,13 +27,13 @@ public class ObstacleManager : MonoBehaviour
         {
             { 1, DEFAULT_FALLING_SPEED }, 
             { 2, new List<float> { 3.0f, 4.0f, 5.0f } }, 
-            { 3, new List<float> { 5.0f, 6.0f, 7.0f } },
+            { 3, new List<float> { 3.0f, 4.0f, 5.0f } },
         };
         levelSpawnIntervalMapping = new Dictionary<int, (float minSpawnInterval, float maxSpawnInterval)>
         {
             { 1, (1.5f, 3.0f) },
             { 2, (1.0f, 2.0f) },
-            { 3, (0.5f, 1.0f) },
+            { 3, (1.0f, 2.0f) },
         };
     }
 
