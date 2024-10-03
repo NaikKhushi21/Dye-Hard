@@ -17,7 +17,6 @@ public static class ObstacleWrapperManager
 
     public static TextMeshProUGUI GetObstacleText(GameObject obstacleWrapper)
     {
-        // Find the TextMeshPro component in the ObstacleWrapper
         return obstacleWrapper.transform.Find("Canvas/TimerText").GetComponent<TextMeshProUGUI>();
     }
 }

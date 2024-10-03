@@ -76,15 +76,11 @@ public class DetectCollisions : MonoBehaviour
     {
         if (obstacleColor == ballColor)
         {
-            // Give player rewards based on color
             ballCountManager.ModifyBallCount(ballCountManager.rewardBall);
-
-            // Give player score based on color
             scoreManager.ModifyScore(scoreManager.rewardScore);
         }
         else
         {
-            // Give player penalty based on color
             ballCountManager.ModifyBallCount(ballCountManager.penaltyBall);
         }
         Destroy(gameObject);
@@ -94,15 +90,11 @@ public class DetectCollisions : MonoBehaviour
     {
         if (ColorManager.IsBallColorOneOfBlended(obstacleColor, ballColor))
         {
-            // Change blended obstacle color to primary color
             ChangeBlendedObstacleColor(obstacleColor, ballColor);
-
-            // Give player score based on color
             scoreManager.ModifyScore(scoreManager.rewardScore);
         }
         else
         {
-            // Give player penalty based on wrong color collisions
             ballCountManager.ModifyBallCount(ballCountManager.penaltyBall);
             Destroy(gameObject);
         }

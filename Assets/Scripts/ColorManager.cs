@@ -49,7 +49,6 @@ public static class ColorManager
         { PrimaryColorsMap["Blue"], BlendedColorsMap["Orange"] },
     };
 
-    // Primary Colors List
     public static List<Color> PrimaryColors = new List<Color>
     {
         PrimaryColorsMap["Red"],
@@ -57,7 +56,6 @@ public static class ColorManager
         PrimaryColorsMap["Blue"],
     };
 
-    // Blended Colors List
     public static List<Color> BlendedColors = new List<Color>
     {
         BlendedColorsMap["Green"],
@@ -66,13 +64,10 @@ public static class ColorManager
         BlendedColorsMap["Black"],
     };
 
-    // All Colors List (combining primary and blended colors)
     public static List<Color> AllColors = new List<Color>(PrimaryColors.Count + BlendedColors.Count);
 
-    // Static constructor to populate the AllColors list
     static ColorManager()
     {
-        // Add primary and blended colors to the AllColors list
         AllColors.AddRange(PrimaryColors);
         AllColors.AddRange(BlendedColors);
     }
@@ -84,13 +79,10 @@ public static class ColorManager
 
     public static Color GetNewObstacleColor(Color obstacleColor, Color ballColor)
     {
-        // Get the current constituent colors
         HashSet<Color> currentConstituents = new(BlendedColorConstitutions[obstacleColor]);
 
-        // Remove the ballColor from the constituent colors
         currentConstituents.Remove(ballColor);
 
-        // Determine the new color based on the remaining constituents
         Color newObstacleColor = Color.red;
         if (currentConstituents.Count == 1) // obstacle color is green, orange, or purple
         {
@@ -100,7 +92,7 @@ public static class ColorManager
                 newObstacleColor = color;
             }
         }
-        else // obstacle color is brown
+        else // obstacle color is black
         {
             newObstacleColor = ComplementaryColorMap[ballColor];
         }

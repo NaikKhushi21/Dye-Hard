@@ -19,7 +19,6 @@ public class ObstacleFalling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Move the obstacle down
         transform.Translate(Vector3.down * fallingSpeed * Time.deltaTime);
     }
 }

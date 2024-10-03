@@ -23,13 +23,10 @@ public class ObstacleTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Decrease the lifeTime timer
         lifeTime -= Time.deltaTime;
 
-        // Update the timer text
         UpdateTimerText();
 
-        // Check if the timer has run out
         if (lifeTime <= 0)
         {
             // Apply penalty if the obstacle was not destroyed in time
@@ -57,7 +54,6 @@ public class ObstacleTimer : MonoBehaviour
     // Method to apply the penalty when the obstacle's timer runs out
     void ApplyTimerPenalty()
     {
-        // Reduce the ball count by 1 when the obstacle is not destroyed in time
         if (ballCountManager != null)
         {
             ballCountManager.ModifyBallCount(ballCountManager.timePenalty);

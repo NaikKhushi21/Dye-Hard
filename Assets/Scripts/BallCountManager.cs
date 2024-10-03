@@ -6,7 +6,6 @@ using System;
 
 public class BallCountManager : MonoBehaviour
 {
-    // Ball count for different colors
     public int ballCount = 10;
     public int rewardBall = 4;
     public int penaltyBall = -3;
@@ -15,8 +14,6 @@ public class BallCountManager : MonoBehaviour
 
     private GameManager gameManager;
     
-
-    // TextMeshProUGUI elements to show the counts
     public TextMeshProUGUI ballText;
 
     // Start is called before the first frame update

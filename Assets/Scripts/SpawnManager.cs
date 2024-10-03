@@ -28,20 +28,15 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnRandomObstacle()
     {
-        // Pick a random color from ColorManager
         Color randomColor = GetRandomColor();
 
         Vector2 spawnPos = new Vector2(Random.Range(-spawnPosXRange, spawnPosXRange), spawnPosY);
         Quaternion spawnRotation = Quaternion.Euler(0, 0, 0);
 
-        // Instantiate the wrapper
         GameObject instantiatedWrapper = Instantiate(ObstacleWrapperPrefab, spawnPos, spawnRotation);
 
         // Find the actual obstacle GameObject inside the wrapper
-        //GameObject obstacle = instantiatedWrapper.transform.Find("Obstacle").gameObject;
         GameObject obstacle = ObstacleWrapperManager.GetObstacle(instantiatedWrapper);
-
-        // Set the random color on the obstacle's material
         obstacle.GetComponent<Renderer>().material.color = randomColor;
 
         // Schedule the next spawn
@@ -64,19 +59,13 @@ public class SpawnManager : MonoBehaviour
 
     Color GetRandomPrimaryColor()
     {
-        // Choose a random index from the AllColors list
         int randomIndex = Random.Range(0, ColorManager.PrimaryColors.Count);
-
-        // Return the randomly chosen color
         return ColorManager.PrimaryColors[randomIndex];
     }
 
     Color GetRandomAllColor()
     {
-        // Choose a random index from the AllColors list
         int randomIndex = Random.Range(0, ColorManager.AllColors.Count);
-
-        // Return the randomly chosen color
         return ColorManager.AllColors[randomIndex];
     }
 }
