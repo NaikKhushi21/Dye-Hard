@@ -569,9 +569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabd63166d8204bafba38d1c3d843236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 6184813320065682471, guid: 1156b83155f2f4ce797c8d523ed29410, type: 3}
   ballSpeed: 30
   firePoint: {fileID: 186023453}
+  ballPrefab: {fileID: 6184813320065682471, guid: 1156b83155f2f4ce797c8d523ed29410, type: 3}
   aimLine: {fileID: 693243849}
 --- !u!212 &693243846
 SpriteRenderer:

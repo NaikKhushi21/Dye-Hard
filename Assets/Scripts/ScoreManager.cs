@@ -6,7 +6,7 @@ using System;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int scoreCount = 0;
+    public int scoreCount = 100;
     public int rewardScore = 10;
     public TextMeshProUGUI scoreText;
 

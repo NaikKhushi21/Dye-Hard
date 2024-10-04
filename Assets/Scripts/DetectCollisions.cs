@@ -60,16 +60,22 @@ public class DetectCollisions : MonoBehaviour
     void HandleObstacleCollision(Collider2D other)
     {
         GameObject obstacle = ObstacleWrapperManager.GetObstacle(gameObject);
-        Color obstacleColor = obstacle.gameObject.GetComponent<Renderer>().material.color;
-        Color ballColor = other.gameObject.GetComponent<Renderer>().material.color;
+        Renderer obstacleRenderer = obstacle.GetComponent<Renderer>();
+        Renderer ballRenderer = other.GetComponent<Renderer>();
 
-        if (ColorManager.PrimaryColorsSet.Contains(obstacleColor))
+        if (obstacleRenderer != null && ballRenderer != null)
         {
-            HandlePrimaryColorCollision(obstacleColor, ballColor);
-        }
-        else
-        {
-            HandleBlendedColorCollision(obstacleColor, ballColor);
+            Color obstacleColor = obstacleRenderer.material.color;
+            Color ballColor = ballRenderer.material.color;
+
+            if (ColorManager.PrimaryColorsSet.Contains(obstacleColor))
+            {
+                HandlePrimaryColorCollision(obstacleColor, ballColor);
+            }
+            else
+            {
+                HandleBlendedColorCollision(obstacleColor, ballColor);
+            }
         }
     }
 
