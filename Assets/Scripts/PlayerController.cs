@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject ballPrefab;
-    public float ballSpeed = 20f;   
+    public float ballSpeed = 20f;
     public Transform firePoint;
-    private Color dynamicColor;
-
-    private BallCountManager ballCountManager;
-
-    // added by khushi
+    public GameObject ballPrefab;
     public LineRenderer aimLine;
-    private float lineLength = 35f;
 
+    private float lineLength = 35f;
+    private Color dynamicColor;
+    private BallCountManager ballCountManager;
 
     // Start is called before the first frame update
     void Start()
     {
         dynamicColor = ColorManager.PrimaryColorsMap["Red"];
         ballCountManager = FindObjectOfType<BallCountManager>();
-
-        // added by khushi
-        // Initialize LineRenderer properties
         aimLine.startWidth = 0.05f;
         aimLine.endWidth = 0.05f;
         aimLine.startColor = dynamicColor;
@@ -35,38 +29,30 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdatePlayerDirection();
-
         HandleMousePress();
-
         HandleBallColorSwitch();
-        // added by khushi
         UpdateAimLine();
     }
 
-    // added by khushi
     void UpdateAimLine()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
 
         Vector3 direction = mousePosition - firePoint.position;
-
         direction.Normalize();
 
         Vector3 lineEndPosition = firePoint.position + direction * lineLength;
-
-        aimLine.SetPosition(0, firePoint.position);  // Start of the line
-        aimLine.SetPosition(1, lineEndPosition);     // End of the line, fixed length
+        aimLine.SetPosition(0, firePoint.position);
+        aimLine.SetPosition(1, lineEndPosition);
     }
 
     void UpdatePlayerDirection()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         mousePosition.z = 0;
 
         Vector3 direction = mousePosition - transform.position;
-
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
@@ -108,9 +94,8 @@ public class PlayerController : MonoBehaviour
         {
             dynamicColor = ColorManager.PrimaryColorsMap["Blue"];
         }
-        ChangePlayerColor();
 
-        // added by khushi
+        ChangePlayerColor();
         ChangeAimLineColor();
     }
 
@@ -119,7 +104,6 @@ public class PlayerController : MonoBehaviour
         gameObject.GetComponent<Renderer>().material.color = dynamicColor;
     }
 
-    // added by khushi
     void ChangeAimLineColor()
     {
         aimLine.startColor = dynamicColor;

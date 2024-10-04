@@ -11,10 +11,9 @@ public class BallCountManager : MonoBehaviour
     public int penaltyBall = -3;
     public int timePenalty = -5;
     public int outOfBoundPenalty = -5;
+    public TextMeshProUGUI ballText;
 
     private GameManager gameManager;
-    
-    public TextMeshProUGUI ballText;
 
     // Start is called before the first frame update
     void Start()
@@ -29,16 +28,13 @@ public class BallCountManager : MonoBehaviour
         
     }
 
-    // Method to update the UI text
     void UpdateBallCountUI()
     {
         ballText.text = "Ball: " + ballCount.ToString();
     }
 
-    // Call this method when a ball is collected or used to modify the ball count
     public void ModifyBallCount(int count)
     {
-        // Update the UI whenever the count changes
         ballCount = Math.Max(0, ballCount + count);
         UpdateBallCountUI();
 

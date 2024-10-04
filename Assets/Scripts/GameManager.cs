@@ -6,6 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI gameOverText;
+
     // Start is called before the first frame update
     void Start()
     {

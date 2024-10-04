@@ -80,13 +80,11 @@ public static class ColorManager
     public static Color GetNewObstacleColor(Color obstacleColor, Color ballColor)
     {
         HashSet<Color> currentConstituents = new(BlendedColorConstitutions[obstacleColor]);
-
         currentConstituents.Remove(ballColor);
 
         Color newObstacleColor = Color.red;
         if (currentConstituents.Count == 1) // obstacle color is green, orange, or purple
         {
-            // If only one color is left, set obstacleColor to that color
             foreach (var color in currentConstituents)
             {
                 newObstacleColor = color;

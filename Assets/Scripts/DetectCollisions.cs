@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
-    private BallCountManager ballCountManager;
-    private ScoreManager scoreManager;
     private GameManager gameManager;
+    private ScoreManager scoreManager;
+    private BallCountManager ballCountManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        ballCountManager = FindObjectOfType<BallCountManager>();
-        scoreManager = FindObjectOfType<ScoreManager>();
         gameManager = FindObjectOfType<GameManager>();
+        scoreManager = FindObjectOfType<ScoreManager>();
+        ballCountManager = FindObjectOfType<BallCountManager>();
     }
 
     // Update is called once per frame
@@ -62,6 +62,7 @@ public class DetectCollisions : MonoBehaviour
         GameObject obstacle = ObstacleWrapperManager.GetObstacle(gameObject);
         Color obstacleColor = obstacle.gameObject.GetComponent<Renderer>().material.color;
         Color ballColor = other.gameObject.GetComponent<Renderer>().material.color;
+
         if (ColorManager.PrimaryColorsSet.Contains(obstacleColor))
         {
             HandlePrimaryColorCollision(obstacleColor, ballColor);

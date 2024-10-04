@@ -5,10 +5,10 @@ using TMPro;
 
 public class ObstacleTimer : MonoBehaviour
 {
-
     private float lifeTime;
-    private BallCountManager ballCountManager;
     private ObstacleManager obstacleManager;
+    private BallCountManager ballCountManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,19 +29,18 @@ public class ObstacleTimer : MonoBehaviour
 
         if (lifeTime <= 0)
         {
-            // Apply penalty if the obstacle was not destroyed in time
             ApplyTimerPenalty();
             Destroy(gameObject);
         }
     }
 
-    // Method to update the timer text
     void UpdateTimerText()
     {
         TextMeshProUGUI timerText = ObstacleWrapperManager.GetObstacleText(gameObject);
         if (timerText != null)
         {
-            timerText.text = lifeTime.ToString("F1") + "s"; // Format to one decimal place
+            // Format to one decimal place
+            timerText.text = lifeTime.ToString("F1") + "s";
             if (lifeTime < 3 && timerText.color != Color.red)
             {
                 timerText.color = Color.red;
@@ -51,7 +50,6 @@ public class ObstacleTimer : MonoBehaviour
         }
     }
 
-    // Method to apply the penalty when the obstacle's timer runs out
     void ApplyTimerPenalty()
     {
         if (ballCountManager != null)

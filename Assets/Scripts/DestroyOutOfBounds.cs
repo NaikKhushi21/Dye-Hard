@@ -5,8 +5,8 @@ using UnityEngine;
 public class DestroyOutOfBounds : MonoBehaviour
 {
     private float boundary = 10.0f;
-
     private BallCountManager ballCountManager;
+
     // Start is called before the first frame update
     void Start()
     {

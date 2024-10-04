@@ -8,15 +8,14 @@ public class SpawnManager : MonoBehaviour
 
     private float spawnPosY = 7;
     private float spawnPosXRange = 10;
-
     private LevelManager levelManager;
     private ObstacleManager obstacleManager;
+
     // Start is called before the first frame update
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         obstacleManager = FindObjectOfType<ObstacleManager>();
-
         Invoke("SpawnRandomObstacle", obstacleManager.GetSpawnInterval());
     }
 
@@ -29,13 +28,10 @@ public class SpawnManager : MonoBehaviour
     private void SpawnRandomObstacle()
     {
         Color randomColor = GetRandomColor();
-
         Vector2 spawnPos = new Vector2(Random.Range(-spawnPosXRange, spawnPosXRange), spawnPosY);
         Quaternion spawnRotation = Quaternion.Euler(0, 0, 0);
-
         GameObject instantiatedWrapper = Instantiate(ObstacleWrapperPrefab, spawnPos, spawnRotation);
 
-        // Find the actual obstacle GameObject inside the wrapper
         GameObject obstacle = ObstacleWrapperManager.GetObstacle(instantiatedWrapper);
         obstacle.GetComponent<Renderer>().material.color = randomColor;
 

@@ -6,13 +6,13 @@ using TMPro;
 public class LevelManager : MonoBehaviour
 {
     public int currentLevel = 1;
+    public TextMeshProUGUI levelText;
     public Dictionary<int, int> levelMilestones = new Dictionary<int, int>()
     {
         { 1, 100 },
         { 2, 300 },
         { 3, int.MaxValue }
     };
-public TextMeshProUGUI levelText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +26,11 @@ public TextMeshProUGUI levelText;
         
     }
 
-    // Method to update the UI text
     void UpdateLevelUI()
     {
         levelText.text = "Level: " + currentLevel.ToString();
     }
 
-    // Call this method when the level changes
     public void LevelUp()
     {
         currentLevel += 1;

@@ -8,7 +8,6 @@ public class ScoreManager : MonoBehaviour
 {
     public int scoreCount = 0;
     public int rewardScore = 10;
-
     public TextMeshProUGUI scoreText;
 
     private LevelManager levelManager;
@@ -26,16 +25,13 @@ public class ScoreManager : MonoBehaviour
         
     }
 
-    // Method to update the UI text
     void UpdateScoreUI()
     {
         scoreText.text = scoreCount.ToString();
     }
 
-    // Call this method when the score is updated
     public void ModifyScore(int count)
     {
-        // Update the UI whenever the score changes
         scoreCount = Math.Max(0, scoreCount + count);
         UpdateScoreUI();
 

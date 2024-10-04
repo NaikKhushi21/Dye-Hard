@@ -10,13 +10,12 @@ public class ObstacleManager : MonoBehaviour
     private Dictionary<int, (float minLifeTime, float maxLifeTime)> levelLifetimeMapping;
     private Dictionary<int, List<float>> levelFallingSpeedMapping;
     private Dictionary<int, (float minSpawnInterval, float maxSpawnInterval)> levelSpawnIntervalMapping;
-
     private LevelManager levelManager;
 
+    // Start is called before the first frame update
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
-
         levelLifetimeMapping = new Dictionary<int, (float minLifeTime, float maxLifeTime)>
         {
             { 1, DEFAULT_TIME_RANGE },
@@ -37,12 +36,12 @@ public class ObstacleManager : MonoBehaviour
         };
     }
 
+    // Update is called once per frame
     private void Update()
     {
         
     }
 
-    // Method to get the lifetime range based on the current level
     public float GetLifeTime()
     {
         int currentLevel = levelManager.currentLevel;
