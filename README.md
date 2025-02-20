@@ -1,6 +1,8 @@
 # Dye Hard
 
-A 2D-platformer survival game featuring a dynamic color-switching mechanic
+A 2D-platformer survival game featuring a dynamic color-switching mechanic.
+
+Gameplay Link: https://dw1209.github.io/DyeHard/
 
 ## Initial Setup
 
