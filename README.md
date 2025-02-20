@@ -2,7 +2,33 @@
 
 A 2D-platformer survival game featuring a dynamic color-switching mechanic.
 
-Gameplay Link: https://dw1209.github.io/DyeHard/
+# Gameplay Link 
+https://dw1209.github.io/DyeHard/
+
+# Logline
+
+In this 2D Shooting-Survivor, the player survives by smashing through obstacles and matching colors with precision. Player must switch colors to earn ammo, hit different colors consecutively and break blended obstacles in order to score and survive.
+
+
+# Prototype description
+
+Dye Hard is a 2D Shooting-Survival game featuring a dynamic color-switching mechanic. As the player, the goal is to smash through obstacles while precisely matching their colors. Players have to switch the color of the ball to correspond with the obstacles that appear on screen. As the game progresses, blended colors(combinations of the original three colors) will start to appear so that players have to mix the colors based on their knowledge of colors.
+
+
+#Controls description
+
+Switch Player Color with Number keys 1(Red), 2(Yellow) and 3(Blue)
+Aim Ball with Mouse Position
+Shoot Ball with Left Mouse click
+
+
+# Names of Team Members
+
+Ying Tu
+Daniel Wang
+Khushi Naik
+
+
 
 ## Initial Setup
 
